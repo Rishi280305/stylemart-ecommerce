@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyleMart — Everyday things, made well</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Style<span>Mart</span></a>
+
+      <form class="nav-search">
+        <input type="search" placeholder="Search for products…" aria-label="Search products">
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-icon search-toggle" aria-label="Toggle search">🔍</button>
+        <a href="cart.html" class="cart-link" aria-label="View cart">
+          🛍️
+          <span class="cart-count">0</span>
+        </a>
+        <button class="btn-icon hamburger" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <p class="hero-eyebrow">New season, straightforward prices</p>
+        <h1>Things worth keeping, priced to actually buy.</h1>
+        <p>A small, honest catalog of clothing, jewelry and electronics — no gimmicks, no countdown timers. Just good things at fair prices.</p>
+        <div class="hero-actions">
+          <a href="products.html" class="btn btn-primary">Shop all products</a>
+          <a href="products.html?category=electronics" class="btn btn-secondary">Browse electronics</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://fakestoreapi.com/img/71li-ngTlUL._AC_UX679_.jpg" alt="Featured jacket" id="hero-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Featured products ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Featured products</h2>
+        <p>Highly rated picks from across the store</p>
+      </div>
+      <div class="product-grid" id="featured-grid">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Categories ===== -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Shop by category</h2>
+        <p>Four departments, everything else stays out</p>
+      </div>
+      <div class="category-grid" id="category-grid">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Offer banner ===== -->
+  <section class="offer-banner">
+    <div class="container">
+      <p class="hero-eyebrow">Limited-time</p>
+      <h2>Free shipping on every order over $50</h2>
+      <p>No code needed — it's applied automatically at checkout.</p>
+      <a href="products.html" class="btn btn-gold">Start shopping</a>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">Style<span>Mart</span></a>
+          <p>A small catalog site built as a learning project, powered by the Fake Store API.</p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All products</a></li>
+            <li><a href="products.html?category=men's clothing">Men's clothing</a></li>
+            <li><a href="products.html?category=women's clothing">Women's clothing</a></li>
+            <li><a href="products.html?category=jewelery">Jewelry</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Help</h4>
+          <ul>
+            <li><a href="cart.html">Your cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">Portfolio project</a></li>
+            <li><a href="#">No real orders are shipped</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="footer-year"></span> StyleMart</p>
+        <p>Built with HTML, CSS &amp; vanilla JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Home page only needs a slice of the catalog, so this small
+    // inline script (not a whole separate file) fetches products
+    // once and fills the two sections above.
+    async function initHomePage() {
+      const grid = document.querySelector('#featured-grid');
+      const catGrid = document.querySelector('#category-grid');
+
+      try {
+        const products = await getAllProducts();
+
+        const featured = [...products].sort((a, b) => b.rating.rate - a.rating.rate).slice(0, 8);
+        grid.innerHTML = featured.map((p) => `
+          <article class="product-card" data-id="${p.id}">
+            <a href="product-details.html?id=${p.id}" class="product-card-media">
+              <img src="${p.image}" alt="${p.title}" loading="lazy">
+            </a>
+            <div class="product-card-body">
+              <span class="product-category">${p.category}</span>
+              <a href="product-details.html?id=${p.id}" class="product-title">${p.title}</a>
+              <div class="product-rating">
+                <span class="stars">${renderStars(p.rating.rate)}</span>
+                <span>(${p.rating.count})</span>
+              </div>
+              <div class="product-price-row">
+                <span class="product-price">${formatPrice(p.price)}</span>
+              </div>
+            </div>
+            <div class="product-card-actions">
+              <button class="btn btn-primary btn-add-cart" data-id="${p.id}">Add to cart</button>
+            </div>
+          </article>
+        `).join('');
+
+        const categoryMeta = {
+          "men's clothing": { icon: '👔', desc: 'Shirts, jackets and everyday wear' },
+          "women's clothing": { icon: '👗', desc: 'Dresses, tops and outerwear' },
+          jewelery: { icon: '💍', desc: 'Rings, chains and earrings' },
+          electronics: { icon: '💻', desc: 'Monitors, drives and accessories' },
+        };
+        const categories = [...new Set(products.map((p) => p.category))];
+        catGrid.innerHTML = categories.map((cat) => `
+          <a href="products.html?category=${encodeURIComponent(cat)}" class="category-tile">
+            <div class="cat-icon">${categoryMeta[cat]?.icon ?? '🛍️'}</div>
+            <h3>${cat}</h3>
+            <p>${categoryMeta[cat]?.desc ?? ''}</p>
+          </a>
+        `).join('');
+      } catch (err) {
+        console.error(err);
+        grid.innerHTML = `<div class="state-block"><div class="state-icon">⚠️</div><h3>Couldn't load products</h3><p>Please refresh the page.</p></div>`;
+      }
+    }
+
+    initFeaturedGridDelegation();
+    function initFeaturedGridDelegation() {
+      document.addEventListener('click', (event) => {
+        const btn = event.target.closest('.btn-add-cart');
+        if (!btn || !btn.closest('#featured-grid')) return;
+        event.preventDefault();
+        getProductById(btn.dataset.id).then((product) => {
+          Cart.addItem(product, 1);
+          showToast(`Added "${product.title.slice(0, 30)}" to cart`, 'success');
+        });
+      });
+    }
+
+    initHomePage();
+  </script>
+</body>
+</html>

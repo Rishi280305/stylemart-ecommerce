@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your cart — StyleMart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Style<span>Mart</span></a>
+      <form class="nav-search">
+        <input type="search" placeholder="Search for products…" aria-label="Search products">
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-icon search-toggle" aria-label="Toggle search">🔍</button>
+        <a href="cart.html" class="cart-link" aria-label="View cart">
+          🛍️
+          <span class="cart-count">0</span>
+        </a>
+        <button class="btn-icon hamburger" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">Home</a> / Cart</p>
+  </div>
+
+  <main class="container">
+    <h1 style="margin-bottom: 8px;">Your cart</h1>
+
+    <div id="cart-empty" class="state-block hidden">
+      <div class="state-icon">🛒</div>
+      <h3>Your cart is empty</h3>
+      <p>Looks like you haven't added anything yet. Go find something you like.</p>
+      <a href="products.html" class="btn btn-primary">Browse products</a>
+    </div>
+
+    <div id="cart-layout" class="cart-layout hidden">
+      <div id="cart-list">
+        <!-- filled by JS -->
+      </div>
+
+      <aside class="summary-box">
+        <h3>Order summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="summary-subtotal">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="summary-shipping">$0.00</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span id="summary-total">$0.00</span>
+        </div>
+        <p class="free-ship-note hidden" id="free-ship-note"></p>
+        <a href="checkout.html" class="btn btn-primary btn-full">Proceed to checkout</a>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© <span id="footer-year"></span> StyleMart</p>
+        <p>Built with HTML, CSS &amp; vanilla JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

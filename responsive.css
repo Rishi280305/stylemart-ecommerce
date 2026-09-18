@@ -1,0 +1,93 @@
+/* ============================================================
+   RESPONSIVE.CSS — Breakpoints layered on top of style.css
+   ============================================================ */
+
+/* ---------- Tablet ---------- */
+@media (max-width: 960px) {
+  .hero .container { grid-template-columns: 1fr; }
+  .hero-visual { order: -1; max-height: 280px; }
+
+  .pd-layout { grid-template-columns: 1fr; gap: 32px; }
+  .pd-media { position: static; aspect-ratio: 16/11; }
+
+  .cart-layout, .checkout-layout { grid-template-columns: 1fr; }
+  .summary-box { position: static; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- Mobile nav ---------- */
+@media (max-width: 760px) {
+  .navbar .container { height: 64px; gap: 14px; }
+  .hamburger { display: block; }
+
+  .nav-search { order: 3; max-width: none; width: 100%; flex-basis: 100%; display: none; }
+  .nav-search.open { display: flex; }
+
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 24px 16px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .nav-links.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .nav-links a { padding: 12px 0; border-bottom: 1px solid var(--line); width: 100%; }
+
+  .navbar .container { flex-wrap: wrap; }
+  .nav-actions { margin-left: auto; }
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+
+  .hero { padding: 44px 0; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+
+  .section { padding: 44px 0; }
+  .section-heading { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .product-card-body { padding: 12px; }
+  .product-card-actions { padding: 0 12px 12px; flex-direction: column; }
+
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar-count { margin-left: 0; }
+  .toolbar select, .toolbar-search { width: 100%; }
+
+  .pd-title { font-size: 1.6rem; }
+  .pd-actions-row { flex-direction: column; align-items: stretch; }
+
+  .cart-item {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas:
+      "media title"
+      "media qty"
+      "media actions";
+    row-gap: 8px;
+  }
+  .cart-item-media { grid-area: media; width: 60px; height: 60px; }
+  .cart-item-title-block { grid-area: title; }
+  .cart-item-price { display: none; }
+  .cart-item-qty { grid-area: qty; }
+  .cart-item-subtotal, .cart-item-remove { grid-area: actions; text-align: left; }
+
+  .form-grid { grid-template-columns: 1fr; }
+
+  .toast-stack { left: 16px; right: 16px; bottom: 16px; }
+  .toast { min-width: 0; }
+}

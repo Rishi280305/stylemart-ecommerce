@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — StyleMart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Style<span>Mart</span></a>
+      <form class="nav-search">
+        <input type="search" placeholder="Search for products…" aria-label="Search products">
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-icon search-toggle" aria-label="Toggle search">🔍</button>
+        <a href="cart.html" class="cart-link" aria-label="View cart">
+          🛍️
+          <span class="cart-count">0</span>
+        </a>
+        <button class="btn-icon hamburger" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">Home</a> / Shop</p>
+  </div>
+
+  <main class="container">
+    <div class="toolbar">
+      <input type="search" id="toolbar-search" class="toolbar-search" placeholder="Search this list…">
+
+      <select id="filter-category">
+        <option value="all">All categories</option>
+        <!-- category options filled by JS -->
+      </select>
+
+      <select id="sort-select">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to high</option>
+        <option value="price-desc">Price: High to low</option>
+        <option value="rating-desc">Highest rated</option>
+      </select>
+
+      <span class="toolbar-count" id="toolbar-count"></span>
+    </div>
+
+    <div class="product-grid" id="product-grid">
+      <!-- filled by JS -->
+    </div>
+
+    <div id="state-block" class="hidden"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© <span id="footer-year"></span> StyleMart</p>
+        <p>Built with HTML, CSS &amp; vanilla JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>
