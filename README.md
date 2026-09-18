@@ -53,3 +53,10 @@ stylemart-ecommerce/
     ├── product-details.js
     ├── cart.js
     └── checkout.js
+## 📌 Note
+
+This is a frontend demo project. No real payment is processed.
+
+## 👨‍💻 Author
+
+Sanepalle Rushikeshava Reddy
